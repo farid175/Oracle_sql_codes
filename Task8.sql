@@ -1,0 +1,14 @@
+/*
+Write a query in SQL to display the country name, city, and number of those departments where at least 2 employees are working.
+
+En az 2 iscisi olan departamentlerin sayini, onlarin yerlesdiyi seher ve olke adlarini yazin.
+*/
+
+
+select count(d.department_id)departments,loc.city,c.country_name
+from employees e join departments d on e.department_id = d.department_id
+join locations loc on loc.location_id = d.location_id
+join countries c on c.country_id = loc.country_id
+group by loc.city,c.country_name
+having count(e.employee_id) >= 2
+/
