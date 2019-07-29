@@ -5,7 +5,8 @@ En az 2 iscisi olan departamentlerin sayini, onlarin yerlesdiyi seher ve olke ad
 */
 
 
-select count(d.department_id)departments,loc.city,c.country_name
+
+select c.country_name,loc.city, count(distinct d.department_id)
 from employees e join departments d on e.department_id = d.department_id
 join locations loc on loc.location_id = d.location_id
 join countries c on c.country_id = loc.country_id
