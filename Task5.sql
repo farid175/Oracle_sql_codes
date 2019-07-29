@@ -5,7 +5,9 @@ Display department name, manager name, and salary of the manager for all manager
 */
 
 
-select d.department_name,e.first_name,e.salary,e.hire_date
-from employees e join departments d on e.employee_id = d.manager_id 
-where months_between(sysdate,e.hire_date) > 5*12
+select d.department_name,em.first_name,em.salary,em.hire_date,count(e.employee_id)
+from employees e join employees em on e.manager_id = em.employee_id
+join departments d on d.department_id = em.department_id
+where months_between(sysdate,em.hire_date) > 5*12
+group by d.department_name,em.first_name,em.salary,em.hire_date
 /
